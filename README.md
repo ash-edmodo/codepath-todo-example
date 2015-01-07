@@ -17,7 +17,7 @@ Note:
 -----
 This took slightly longer to complete that I think it should have as I totally missed the note about the third-party library needed for file-IO in the slides & wasted time looking it up.
 
-Also I think I would add a second step in the deletion interaction where by a small button's displayed on the list-view items which invokes the actual deletion method.
+Also I think I would add a second step in the deletion interaction, where by a small button's displayed on the list-view items which invokes the actual deletion method.
 
 
 ![Video Walkthrough](https://raw.githubusercontent.com/ash-edmodo/codepath-todo-example/master/walkthrough.gif)
