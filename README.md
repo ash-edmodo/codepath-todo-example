@@ -11,7 +11,7 @@ Completed user stories:
 * [x] Did you include support for editing todo items as described above?
 * [x] Does your app persist todo items and retrieve them properly on app restart?
 * [x] Did you successfully push your code to github? Can you see the code on github?
-* [ ] Did you add a README which includes a GIF walkthrough of the app's functionality?
+* [x] Did you add a README which includes a GIF walkthrough of the app's functionality?
 
 Note:
 -----
