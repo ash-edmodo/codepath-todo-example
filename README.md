@@ -12,3 +12,14 @@ Completed user stories:
 * [x] Does your app persist todo items and retrieve them properly on app restart?
 * [x] Did you successfully push your code to github? Can you see the code on github?
 * [ ] Did you add a README which includes a GIF walkthrough of the app's functionality?
+
+Note:
+-----
+This took slightly longer to complete that I think it should have as I totally missed the note about the third-party library needed for file-IO in the slides & wasted time looking it up.
+
+Also I think I would add a second step in the deletion interaction where by a small button's displayed on the list-view items which invokes the actual deletion method.
+
+
+![Video Walkthrough](https://raw.githubusercontent.com/ash-edmodo/codepath-todo-example/master/walkthrough.gif)
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
