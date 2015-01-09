@@ -24,9 +24,9 @@
         android:text="@string/save"
         android:id="@+id/btnUpdateItem"
         android:onClick="onUpdateItem"
-        android:layout_below="@id/etItem"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:focusable="true" />
+        android:focusable="true"
+        android:layout_below="@+id/etItem"
+        android:layout_alignRight="@+id/etItem"
+        android:layout_alignEnd="@+id/etItem" />
 
 </RelativeLayout>
