@@ -48,13 +48,14 @@ public class EditItemFragment extends DialogFragment {
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_edit_item, container, false);
 
-        Button btn = (Button) view.findViewById(R.id.btnUpdateItem);
+        final Button btnSave = (Button) view.findViewById(R.id.btnUpdateItem);
+        final Button btnDelete = (Button) view.findViewById(R.id.btnDeleteItem);
         final EditText editText = (EditText) view.findViewById(R.id.etItem);
 
         dialogListener = (EditItemDialogListenerInterface) getActivity();
         editText.setText(mItemString);
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialogListener.onFinishedEditing(mItemPosition, editText.getText().toString());
@@ -62,10 +63,18 @@ public class EditItemFragment extends DialogFragment {
             }
         });
 
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogListener.deleteItem(mItemPosition);
+                getDialog().dismiss();
+            }
+        });
         return view;
     }
 
     public interface EditItemDialogListenerInterface {
         void onFinishedEditing(int position, String inputText);
+        void deleteItem(int itemPosition);
     }
 }

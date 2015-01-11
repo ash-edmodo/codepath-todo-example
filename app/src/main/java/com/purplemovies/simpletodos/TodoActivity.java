@@ -22,7 +22,6 @@ import com.purplemovies.simpletodos.models.ToDoItem;
 import java.util.ArrayList;
 import java.util.Date;
 
-
 public class TodoActivity extends ActionBarActivity implements EditItemFragment.EditItemDialogListenerInterface {
 
     public static final String ITEM_POSITION = "itemPosition";
@@ -74,13 +73,10 @@ public class TodoActivity extends ActionBarActivity implements EditItemFragment.
         mLvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String itemString = ((TextView) view).getText().toString();
-
-                FragmentManager fm = getSupportFragmentManager();
-                EditItemFragment editItemFragment = EditItemFragment.
-                        newInstance(position, itemString);
-
-                editItemFragment.show(fm, "edit_item_dialog");
+                final ToDoItem item = mItems.get(position);
+                item.done = !item.done;
+                item.save();
+                mItemsAdapter.notifyDataSetChanged();
             }
         });
 
@@ -88,15 +84,24 @@ public class TodoActivity extends ActionBarActivity implements EditItemFragment.
                 new AdapterView.OnItemLongClickListener() {
                     @Override
                     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                        final ToDoItem item = mItems.get(position);
-                        mItems.remove(position);
-                        item.delete();
+                        String itemString = ((TextView) view).getText().toString();
+                        FragmentManager fm = getSupportFragmentManager();
+                        EditItemFragment editItemFragment = EditItemFragment.
+                                newInstance(position, itemString);
 
-                        mItemsAdapter.notifyDataSetChanged();
+                        editItemFragment.show(fm, "edit_item_dialog");
                         return true;
                     }
                 }
         );
+    }
+
+    private void removeItem(int position) {
+        final ToDoItem item = mItems.get(position);
+        mItems.remove(position);
+        item.delete();
+
+        mItemsAdapter.notifyDataSetChanged();
     }
 
     public void onAddItem(View view) {
@@ -118,6 +123,11 @@ public class TodoActivity extends ActionBarActivity implements EditItemFragment.
         item.dueDate = new Date();
         item.save();
         mItemsAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void deleteItem(int itemPosition) {
+        removeItem(itemPosition);
     }
 
 
