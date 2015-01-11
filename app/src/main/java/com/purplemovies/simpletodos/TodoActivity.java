@@ -3,6 +3,7 @@ package com.purplemovies.simpletodos;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 
-public class TodoActivity extends ActionBarActivity {
+public class TodoActivity extends ActionBarActivity implements EditItemFragment.EditItemDialogListenerInterface {
 
     public static final String ITEM_POSITION = "itemPosition";
     public static final String ITEM_STRING = "itemString";
@@ -73,14 +74,13 @@ public class TodoActivity extends ActionBarActivity {
         mLvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(parent.getContext(), EditItemActivity.class);
-
                 String itemString = ((TextView) view).getText().toString();
 
-                intent.putExtra(ITEM_POSITION, position);
-                intent.putExtra(ITEM_STRING, itemString);
+                FragmentManager fm = getSupportFragmentManager();
+                EditItemFragment editItemFragment = EditItemFragment.
+                        newInstance(position, itemString);
 
-                startActivityForResult(intent, REQUEST_CODE);
+                editItemFragment.show(fm, "edit_item_dialog");
             }
         });
 
@@ -109,6 +109,15 @@ public class TodoActivity extends ActionBarActivity {
         mItems.add(item);
         mItemsAdapter.notifyDataSetChanged();
         etNewItem.setText("");
+    }
+
+    @Override
+    public void onFinishedEditing(int position, String inputText) {
+        final ToDoItem item = mItems.get(position);
+        item.mDescription = inputText;
+        item.dueDate = new Date();
+        item.save();
+        mItemsAdapter.notifyDataSetChanged();
     }
 
 
