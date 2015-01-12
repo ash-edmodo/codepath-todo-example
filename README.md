@@ -3,7 +3,7 @@ Prerequisite example Android project for Codepath.
 
 This is my implementation of a ToDo application outlined here [Codepath ToDo Prerequisite Example App] (http://courses.codepath.com/snippets/intro_to_android/prework#heading-5-extending-your-todo)
 
-Time spent: 8/9 hours to date.
+Time spent: 9/10 hours to date.
 
 Completed User Stories:
 -----------------------
